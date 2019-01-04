@@ -18,5 +18,5 @@ See the [**online demo**](https://tomashubelbauer.github.io/fragment/)
 
 ### Roadmap
 
-- [ ] Fix links not working
 - [ ] Do not attach handlers repeatedly (this may be a no-op tho so maybe is okay)
+- [ ] When we're exhausted target node count and still have fragment nodes, add all in bulk using fragment
