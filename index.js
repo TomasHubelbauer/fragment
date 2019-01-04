@@ -1,5 +1,6 @@
 let mutated = false;
 let counter = 0;
+let difference = 0;
 
 // TODO: Find out if `attributesOrChildren` can be made `...attributesOrChildren` here, too,
 // but be careful about `const tag = (...attributesOrChildren) => create('tag', ...attributesOrChildren)` cloning the array (dunno if it would)
@@ -15,6 +16,8 @@ function create(tag, attributesOrChildren) {
             throw new Error('Put array instead of object for props.');
         }
     } else if (typeof first === 'string') {
+        children = attributesOrChildren;
+    } else if (first instanceof Node) {
         children = attributesOrChildren;
     } else if (typeof first === 'object' && others instanceof Array) {
         if (others.length === 1 && others[0] instanceof Array) {
@@ -103,8 +106,9 @@ function render() {
                 b(counter.toString())
             ),
             p(
-                a({ href: 'https://tomashubelbauer.github.io/fragment/' }, 'See the source code on GitHub')
-            )
+                a({ href: 'https://github.com/TomasHubelbauer/fragment/', target: '_blank' }, 'See the source code on GitHub'),
+            ),
+            p('FPS: ' + difference)
         )
     ]);
 
@@ -159,7 +163,11 @@ function reconcile(fragment, target) {
 
 window.addEventListener('load', render);
 
-window.setInterval(() => {
+let timestamp = performance.now();
+window.requestAnimationFrame(function step(t) {
     counter++;
+    difference = 1000 / (t - timestamp  );
+    timestamp = t;
     render();
-}, 100);
+    window.requestAnimationFrame(step);
+});
