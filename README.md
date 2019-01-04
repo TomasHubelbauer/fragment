@@ -8,6 +8,15 @@ Similar to React in spirit, but works differently:
 - An update is issued and UI is rendered into a fragment
 - Comparison against the existing DOM is made
 - Differences are reconciled on the existing DOM elements
-  - Subtree additions carried out using a fragment for better performance
+  - [ ] Subtree additions carried out using a fragment for better performance
 
-This is an idea only at this point, it may be a bad one, too.
+## Running
+
+See the [**online demo**](https://tomashubelbauer.github.io/fragment/)
+
+## Contributing
+
+### Roadmap
+
+- [ ] Fix links not working
+- [ ] Do not attach handlers repeatedly (this may be a no-op tho so maybe is okay)
