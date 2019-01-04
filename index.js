@@ -79,6 +79,7 @@ const h1 = (...attributesOrChildren) => create('h1', attributesOrChildren);
 const p = (...attributesOrChildren) => create('p', attributesOrChildren);
 const button = (...attributesOrChildren) => create('button', attributesOrChildren);
 const b = (...attributesOrChildren) => create('b', attributesOrChildren);
+const a = (...attributesOrChildren) => create('a', attributesOrChildren);
 
 function onMutateButtonClick() {
     mutated = true;
@@ -101,6 +102,9 @@ function render() {
                 // TODO: See why `b` keeps flashing in the Inspector, probably is getting replaced? Or does it flash because the textContent changes?
                 b(counter.toString())
             ),
+            p(
+                a({ href: 'https://tomashubelbauer.github.io/fragment/' }, 'See the source code on GitHub')
+            )
         )
     ]);
 
