@@ -13,7 +13,7 @@ Similar to React in spirit, but works differently:
 ## Installing
 
 ```js
-<script src="https://cdn.jsdelivr.net/gh/TomasHubelbauer/js-import-external/mod.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TomasHubelbauer/fragment/lib.js"></script>
 ```
 
 ## Using
