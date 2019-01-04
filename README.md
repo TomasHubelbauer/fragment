@@ -10,6 +10,26 @@ Similar to React in spirit, but works differently:
 - Differences are reconciled on the existing DOM elements
   - [ ] Subtree additions carried out using a fragment for better performance
 
+## Installing
+
+```js
+<script src="https://cdn.jsdelivr.net/gh/TomasHubelbauer/js-import-external/mod.js"></script>
+```
+
+## Using
+
+```js
+// Basic tags come in the library, this is how you add support for any tag
+const tag = (...attributesOrChildren) => create('tag', attributesOrChildren);
+
+function render() {
+    const content = div('Hello, world!', p('This is Fragment!'));
+    const fragment = document.createDocumentFragment();
+    fragment.appendChild(content);
+    reconcile(fragment, document.body);
+}
+```
+
 ## Running
 
 See the [**online demo**](https://tomashubelbauer.github.io/fragment/)
