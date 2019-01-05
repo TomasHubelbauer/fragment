@@ -24,7 +24,7 @@ function render() {
             'Welcome to Fragment! Fragment is a JavaScript library for building user interfaces. ',
             a({ href: 'https://github.com/TomasHubelbauer/fragment/', target: '_blank' }, 'Find out more including the source code on GitHub'),
         ),
-        p('Fragment is similar in React in that it applies changes to DOM based on the difference between the two trees.'),
+        p('Fragment is similar to React in that it applies changes to DOM based on the difference between the two trees.'),
         p(
             'The main difference is that VDOM is not used (the current tree is captured in DOM) and JSX is not used. ',
             'Unfortunately, it is not possible to support JSX in plain JavaScript and one of the design goals of Fragment is to allow using it without a build process. ',
