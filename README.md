@@ -34,11 +34,13 @@ npm install fragment
 
 ```js
 // Basic tags like `div`, `p` etc. come with the library, this is how you add support for any tag
-const tag = (...attributesOrChildren) => create('tag', attributesOrChildren);
+const tag = create('tag'); // Use like `tag(...attributesAndOrChildren)`
 
 function render() {
     reconcile(
+        // The target DOM node to apply the changes to
         document.body,
+        // The rest of the arguments are the top-level nodes in the new rootless tree
         div(
             'Hello, world!',
             p('This is Fragment!'),
