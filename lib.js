@@ -1,5 +1,7 @@
 function reconcile(target, ...fragments) {
-    const count = Math.max(fragments.length, target.childNodes.length);
+    // TODO: Make this `const` again once the TODO below has been addressed
+    let count = Math.max(fragments.length, target.childNodes.length);
+    // TODO: Keep the indices separately so that we can skip `false`, `null` etc in fragments by increasing the fragment index and retrying with the same target child    
     for (let index = 0; index < count; index++) {
         const fragmentChild = fragments[index];
         const targetChild = target.childNodes[index];
@@ -10,6 +12,20 @@ function reconcile(target, ...fragments) {
                 // TODO: .raiseEvent(document.createEvent('unmount'))
                 targetChild.remove();
             }
+        } else if (fragmentChild === false) {
+            /* TODO: See the TODO comment above for how to get rid of this hack with separate indices for fragment and target */
+
+            // Remote the `false` from fragments
+            fragments.splice(index, 1);
+
+            // Prevent increase of the `index`, we want to retry with it without the `false` fragment child
+            index--;
+
+            // Refresh the count now that we've messed with the children
+            count = Math.max(fragments.length, target.childNodes.length);
+
+            // Retry finally without the `false`
+            continue;
         } else {
             if (targetChild === undefined) {
                 // TODO: .raiseEvent(document.createEvent('mount'))
@@ -35,6 +51,7 @@ function reconcile(target, ...fragments) {
                         targetChild.textContent = fragmentChild.textContent
                     }
                 } else {
+                    debugger;
                     throw new Error(`Unexpected node type ${fragmentChild.nodeType}`);
                 }
             }
@@ -60,6 +77,8 @@ function create(tag, attributesOrChildren) {
             throw new Error('Put array instead of object for props.');
         }
     } else if (typeof first === 'string') {
+        children = attributesOrChildren;
+    } else if (typeof first === 'number') {
         children = attributesOrChildren;
     } else if (first instanceof Node) {
         children = attributesOrChildren;
@@ -92,6 +111,8 @@ function create(tag, attributesOrChildren) {
         for (let child of children) {
             if (typeof child === 'string') {
                 element.appendChild(document.createTextNode(child));
+            } else if (typeof child === 'number') {
+                element.appendChild(document.createTextNode(child));
             } else if (child instanceof Node) {
                 element.appendChild(child);
             } else if (child === false || child === null || child === undefined) {
@@ -108,7 +129,13 @@ function create(tag, attributesOrChildren) {
 // TODO: https://developer.mozilla.org/en-US/docs/Web/HTML/Element
 const div = create('div');
 const h1 = create('h1');
+const h2 = create('h2');
+const h3 = create('h3');
+const h4 = create('h4');
+const h5 = create('h5');
+const h6 = create('h6');
 const p = create('p');
 const button = create('button');
+const code = create('code');
 const b = create('b');
 const a = create('a');
