@@ -1,5 +1,6 @@
 let mutated = false;
 let counter = 0;
+let deltaCount = 0;
 let deltas = [];
 
 function onMutateButtonClick() {
@@ -66,16 +67,19 @@ function render() {
     );
 }
 
-window.addEventListener('load', render);
-
-let timestamp = performance.now();
-window.requestAnimationFrame(function step(t) {
-    counter++;
-    if (deltas.push(t - timestamp) > 50) {
-        deltas.shift();
-    }
-
-    timestamp = t;
+window.addEventListener('load', _ => {
     render();
-    window.requestAnimationFrame(step);
+
+    deltaCount = Math.floor(document.body.clientWidth / 4);
+    let timestamp = performance.now();
+    window.requestAnimationFrame(function step(t) {
+        counter++;
+        if (deltas.push(t - timestamp) > deltaCount) {
+            deltas.shift();
+        }
+
+        timestamp = t;
+        render();
+        window.requestAnimationFrame(step);
+    });
 });
