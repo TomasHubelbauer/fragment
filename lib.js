@@ -34,7 +34,26 @@ function reconcile(target, ...fragments) {
                 if (fragmentChild.nodeType === 1) {
                     if (targetChild.nodeType === 1) {
                         if (fragmentChild.tagName === targetChild.tagName) {
-                            // TODO: Reconcile attributes
+                            if (fragmentChild.attributes.length > 0 || targetChild.attributes.length > 0) {
+                                for (let index = 0; index < fragmentChild.attributes.length; index++) {
+                                    const fragmentAttribute = fragmentChild.attributes[index];
+                                    const targetAttribute = targetChild.attributes.getNamedItem(fragmentAttribute.name);
+                                    if (targetAttribute === null) {
+                                        targetChild.attributes.setNamedItem(fragmentAttribute);
+                                    } else if (targetAttribute.value !== fragmentAttribute.value) {
+                                        targetAttribute.value = fragmentAttribute.value;
+                                    }
+                                }
+
+                                // Remove attributes that used to be but no longer are on the element
+                                for (let index = 0; index < targetChild.attributes.length; index++) {
+                                    const attribute = targetChild.attributes[index];
+                                    if (fragmentChild.attributes.getNamedItem(attribute.name) === null) {
+                                        targetChild.attributes.removeNamedItem(attribute.name);
+                                    }
+                                }
+                            }
+                            
                             reconcile(targetChild, ...fragmentChild.childNodes);
                         } else {
                             // TODO: Use `replaceWith` once available in Safari: https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/replaceWith#Browser_compatibility

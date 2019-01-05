@@ -7,7 +7,16 @@ function onMutateButtonClick() {
     render();
 }
 
+function onWorkButtonClick() {
+    const title = document.title;
+    for (let index = 0; index < 1000; index++) {
+        document.title = index;
+        document.title = title;
+    }
+}
+
 function render() {
+    const tpf = deltas.reduce((accumulator, current) => accumulator + current, 0) / deltas.length;
     reconcile(
         document.body,
         h1('Fragment'),
@@ -40,20 +49,20 @@ function render() {
             ' counter: ',
             b(counter.toString()),
         ),
-        deltas.length > 0 && p(
+        p(
             'Time per frame: ',
-            b(Math.round(deltas[deltas.length - 1])),
-            ' ms'
+            b(Math.round(tpf)),
+            ` ms over ${deltas.length} samples`
         ),
-        deltas.length > 0 && p(
+        p(
             'Frames per second: ',
-            b(Math.round(1000 / deltas[deltas.length - 1])),
-            ' FPS'
+            b(Math.round(1000 / tpf)),
+            ` FPS over ${deltas.length} samples`
         ),
-        p('TODO: Fix this chart not updating - sliding:'),
         div(
             ...deltas.map(delta => div({ style: `background: orange; display: inline-flex; height: ${1000 / delta}px; margin: 1px; width: 2px;` })),
         ),
+        button({ onclick: onWorkButtonClick }, 'Do work to slow down the FPS to show on the graph'),
     );
 }
 
