@@ -59,7 +59,8 @@ The project is in its early stages, please check with me in case of interest: [t
 
 ### Roadmap
 
-- [ ] Do not attach handlers repeatedly (this may be a no-op tho so maybe is okay)
-- [ ] When we're exhausted target node count and still have fragment nodes, add all in bulk using fragment
+- [ ] When we're exhausted target node count and still have fragment nodes, add all in bulk using `DocumentFragment` for perf
 - [ ] Provide a way to use the library as an ES module without having to introduce build process in the lib
 - [ ] Obtain and publish an NPM package for Fragment
+- [ ] Split indices for target children and fragment children and implement skipping `false` by increasing only fragment index
+- [ ] Fix the demo chart not sliding, not updating styles of the `div` elements
