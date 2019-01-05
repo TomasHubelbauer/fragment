@@ -117,13 +117,12 @@ function create(tag, attributesOrChildren) {
     
     if (attributes !== undefined) {
         for (let key of Object.keys(attributes)) {
+            const value = attributes[key];
             // TODO: Find a better way to detect if an attribute name is an event
             if (key.startsWith('on')) {
-                element.addEventListener(key.slice(2), attributes[key]);
-            } else {
-                const attribute = document.createAttribute(key);
-                attribute.value = attributes[key];
-                element.attributes.setNamedItem(attribute);
+                element.addEventListener(key.slice(2), value);
+            } else if (value !== undefined) {
+                element.setAttribute(key, value);
             }
         }
     }
