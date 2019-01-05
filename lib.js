@@ -160,3 +160,6 @@ const button = create('button');
 const code = create('code');
 const b = create('b');
 const a = create('a');
+const details = create('details');
+const summary = create('summary');
+const span = create('span');
