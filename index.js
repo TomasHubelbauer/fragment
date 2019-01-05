@@ -1,6 +1,6 @@
 let mutated = false;
 let counter = 0;
-let delta = 0;
+let deltas = [];
 
 function onMutateButtonClick() {
     mutated = true;
@@ -37,18 +37,22 @@ function render() {
         p('Performance is not one of the primary goals of this library, but I am keeping an eye on it and will make changes to keep the library performant.'),
         p(
             code('requestAnimationFrame'),
-            ' counter:',
+            ' counter: ',
             b(counter.toString()),
         ),
-        p(
+        deltas.length > 0 && p(
             'Time per frame: ',
-            b(Math.round(delta)),
+            b(Math.round(deltas[deltas.length - 1])),
             ' ms'
         ),
-        p(
+        deltas.length > 0 && p(
             'Frames per second: ',
-            b(Math.round(1000 / delta)),
+            b(Math.round(1000 / deltas[deltas.length - 1])),
             ' FPS'
+        ),
+        p('TODO: Fix this chart not updating - sliding:'),
+        div(
+            ...deltas.map(delta => div({ style: `background: orange; display: inline-flex; height: ${1000 / delta}px; margin: 1px; width: 2px;` })),
         ),
     );
 }
@@ -58,7 +62,10 @@ window.addEventListener('load', render);
 let timestamp = performance.now();
 window.requestAnimationFrame(function step(t) {
     counter++;
-    delta = t - timestamp;
+    if (deltas.push(t - timestamp) > 50) {
+        deltas.shift();
+    }
+
     timestamp = t;
     render();
     window.requestAnimationFrame(step);

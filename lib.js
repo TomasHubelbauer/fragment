@@ -51,7 +51,6 @@ function reconcile(target, ...fragments) {
                         targetChild.textContent = fragmentChild.textContent
                     }
                 } else {
-                    debugger;
                     throw new Error(`Unexpected node type ${fragmentChild.nodeType}`);
                 }
             }
@@ -70,7 +69,10 @@ function create(tag, attributesOrChildren) {
     const [first, ...others] = attributesOrChildren;
     let attributes;
     let children;
-    if (first instanceof Array) {
+    if (first === undefined) {
+        // Ignore, no  children
+        return element;
+    } else if (first instanceof Array) {
         if (others.length === 0) {
             children = first;
         } else {
