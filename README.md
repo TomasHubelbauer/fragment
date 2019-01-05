@@ -55,6 +55,8 @@ See the [**online demo**](https://tomashubelbauer.github.io/fragment/)
 
 ## Contributing
 
+The project is in its early stages, please check with me in case of interest: [tomas@hubelbauer.net](tomas@hubelbauer.net).
+
 ### Roadmap
 
 - [ ] Do not attach handlers repeatedly (this may be a no-op tho so maybe is okay)
