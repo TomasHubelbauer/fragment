@@ -65,3 +65,4 @@ The project is in its early stages, please check with me in case of interest: [t
 - [ ] Split indices for target children and fragment children and implement skipping `false` by increasing only fragment index
 - [ ] Fix the demo chart not sliding, not updating styles of the `div` elements
 - [ ] Create a demo comparing Fragment with React and Vue
+- [ ] Find a way to preserve focus on an element if it moves up or down among its neighbors (better diff)
