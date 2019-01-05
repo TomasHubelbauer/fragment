@@ -1,32 +1,49 @@
 # Fragment
 
-A JavaScript library for building UIs.
+Fragment is a JavaScript library for building user interfaces.
 
-Similar to React in spirit, but works differently:
+Fragment is similar to React, but can be used without compilation.
+Your plain JavaScript projects served as static files can use Fragment to benefit from the
+ability to update UIs by constructing new trees á la React, but without bundling.
 
-- A UI is rendered to DOM
-- An update is issued and UI is rendered into a fragment
-- Comparison against the existing DOM is made
-- Differences are reconciled on the existing DOM elements
-  - [ ] Subtree additions carried out using a fragment for better performance
+Fragment doesn't support JSX, but does provide a set of helpers for easy tree building,
+which attempts to bridge the gap. Unfortunately, JSX is not supportable in plain JavaScript.
+(Everyone loves to have on E4X, but it would have been a great fit for something like this.)
 
 ## Installing
+
+You can just link Fragment using a plain `script` tag.
 
 ```js
 <script src="https://cdn.jsdelivr.net/gh/TomasHubelbauer/fragment/lib.js"></script>
 ```
 
+We're working on making it available as an ES module as well:
+
+```js
+import reconcile, div from 'https://cdn.jsdelivr.net/gh/TomasHubelbauer/fragment/lib.js';
+```
+
+We're also working on providing an NPM library for the project.
+
+```sh
+npm install fragment
+```
+
 ## Using
 
 ```js
-// Basic tags come in the library, this is how you add support for any tag
+// Basic tags like `div`, `p` etc. come with the library, this is how you add support for any tag
 const tag = (...attributesOrChildren) => create('tag', attributesOrChildren);
 
 function render() {
-    const content = div('Hello, world!', p('This is Fragment!'));
-    const fragment = document.createDocumentFragment();
-    fragment.appendChild(content);
-    reconcile(fragment, document.body);
+    reconcile(
+        document.body,
+        div(
+            'Hello, world!',
+            p('This is Fragment!'),
+        )
+    );
 }
 ```
 
@@ -40,3 +57,5 @@ See the [**online demo**](https://tomashubelbauer.github.io/fragment/)
 
 - [ ] Do not attach handlers repeatedly (this may be a no-op tho so maybe is okay)
 - [ ] When we're exhausted target node count and still have fragment nodes, add all in bulk using fragment
+- [ ] Provide a way to use the library as an ES module without having to introduce build process in the lib
+- [ ] Obtain and publish an NPM package for Fragment

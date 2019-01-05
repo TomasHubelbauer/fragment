@@ -1,6 +1,54 @@
+function reconcile(target, ...fragments) {
+    const count = Math.max(fragments.length, target.childNodes.length);
+    for (let index = 0; index < count; index++) {
+        const fragmentChild = fragments[index];
+        const targetChild = target.childNodes[index];
+        if (fragmentChild === undefined) {
+            if (targetChild === undefined) {
+                throw new Error(`Count ${count} went out of bounds: ${fragments.length}, ${target.childNodes.length}`);
+            } else {
+                // TODO: .raiseEvent(document.createEvent('unmount'))
+                targetChild.remove();
+            }
+        } else {
+            if (targetChild === undefined) {
+                // TODO: .raiseEvent(document.createEvent('mount'))
+                target.appendChild(fragmentChild);
+            } else {
+                if (fragmentChild.nodeType === 1) {
+                    if (targetChild.nodeType === 1) {
+                        if (fragmentChild.tagName === targetChild.tagName) {
+                            // TODO: Reconcile attributes
+                            reconcile(targetChild, ...fragmentChild.childNodes);
+                        } else {
+                            // TODO: Use `replaceWith` once available in Safari: https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/replaceWith#Browser_compatibility
+                            target.replaceChild(fragmentChild, targetChild);
+                        }
+                    } else if (targetChild.nodeType === 3) {
+                        // TODO: Use `replaceWith` once available in Safari: https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/replaceWith#Browser_compatibility
+                        target.replaceChild(fragmentChild, targetChild);
+                    } else {
+                        throw new Error(`Unexpected node type ${targetChild.nodeType}`);
+                    }
+                } else if (fragmentChild.nodeType === 3) {
+                    if (targetChild.textContent !== fragmentChild.textContent) {
+                        targetChild.textContent = fragmentChild.textContent
+                    }
+                } else {
+                    throw new Error(`Unexpected node type ${fragmentChild.nodeType}`);
+                }
+            }
+        }
+    }
+}
+
 // TODO: Find out if `attributesOrChildren` can be made `...attributesOrChildren` here, too,
 // but be careful about `const tag = (...attributesOrChildren) => create('tag', ...attributesOrChildren)` cloning the array (dunno if it would)
 function create(tag, attributesOrChildren) {
+    if (attributesOrChildren === undefined) {
+        return (...attributesOrChildren) => create(tag, attributesOrChildren);
+    }
+
     const element = document.createElement(tag);
     const [first, ...others] = attributesOrChildren;
     let attributes;
@@ -57,53 +105,10 @@ function create(tag, attributesOrChildren) {
     return element;
 }
 
-const div = (...attributesOrChildren) => create('div', attributesOrChildren);
-const h1 = (...attributesOrChildren) => create('h1', attributesOrChildren);
-const p = (...attributesOrChildren) => create('p', attributesOrChildren);
-const button = (...attributesOrChildren) => create('button', attributesOrChildren);
-const b = (...attributesOrChildren) => create('b', attributesOrChildren);
-const a = (...attributesOrChildren) => create('a', attributesOrChildren);
-
-function reconcile(fragment, target) {
-    const count = Math.max(fragment.childNodes.length, target.childNodes.length);
-    for (let index = 0; index < count; index++) {
-        const fragmentChild = fragment.childNodes[index];
-        const targetChild = target.childNodes[index];
-        if (fragmentChild === undefined) {
-            if (targetChild === undefined) {
-                throw new Error(`Count ${count} went out of bounds: ${fragment.childNodes.length}, ${target.childNodes.length}`);
-            } else {
-                // TODO: .raiseEvent(document.createEvent('unmount'))
-                targetChild.remove();
-            }
-        } else {
-            if (targetChild === undefined) {
-                // TODO: .raiseEvent(document.createEvent('mount'))
-                target.appendChild(fragmentChild);
-            } else {
-                if (fragmentChild.nodeType === 1) {
-                    if (targetChild.nodeType === 1) {
-                        if (fragmentChild.tagName === targetChild.tagName) {
-                            // TODO: Reconcile attributes
-                            reconcile(fragmentChild, targetChild);
-                        } else {
-                            // TODO: Use `replaceWith` once available in Safari: https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/replaceWith#Browser_compatibility
-                            target.replaceChild(fragmentChild, targetChild);
-                        }
-                    } else if (targetChild.nodeType === 3) {
-                        // TODO: Use `replaceWith` once available in Safari: https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/replaceWith#Browser_compatibility
-                        target.replaceChild(fragmentChild, targetChild);
-                    } else {
-                        throw new Error(`Unexpected node type ${targetChild.nodeType}`);
-                    }
-                } else if (fragmentChild.nodeType === 3) {
-                    if (targetChild.textContent !== fragmentChild.textContent) {
-                        targetChild.textContent = fragmentChild.textContent
-                    }
-                } else {
-                    throw new Error(`Unexpected node type ${fragmentChild.nodeType}`);
-                }
-            }
-        }
-    }
-}
+// TODO: https://developer.mozilla.org/en-US/docs/Web/HTML/Element
+const div = create('div');
+const h1 = create('h1');
+const p = create('p');
+const button = create('button');
+const b = create('b');
+const a = create('a');
