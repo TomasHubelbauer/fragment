@@ -67,3 +67,4 @@ The project is in its early stages, please check with me in case of interest: [t
 - [ ] Create a demo comparing Fragment with React and Vue
 - [ ] Find a way to preserve focus on an element if it moves up or down among its neighbors (better diff)
 - [ ] See if there is a good way to recognize binary attributes and allow setting them using booleans
+- [ ] Add a mechanism for rendering raw HTML
