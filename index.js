@@ -74,7 +74,6 @@ window.addEventListener('load', _ => {
     window.requestAnimationFrame(function step(t) {
         counter++;
         const deltaCount = Math.floor(document.body.clientWidth / 4);
-        document.title = deltas.length + ' ' + deltaCount + ' ' + timestamp;
         if (deltas.push(t - timestamp) > deltaCount) {
             for (let index = 0; index < deltas.length - deltaCount; index++) {
                 deltas.shift();
