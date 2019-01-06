@@ -30,7 +30,7 @@ function reconcile(target, ...fragments) {
                   const fragmentAttribute = fragmentChild.attributes[index];
                   const targetAttribute = targetChild.attributes.getNamedItem(fragmentAttribute.name);
                   if (targetAttribute === null) {
-                    targetChild.attributes.setNamedItem(fragmentAttribute);
+                    targetChild.setAttribute(fragmentAttribute.name, fragmentAttribute.value);
                   } else if (targetAttribute.value !== fragmentAttribute.value) {
                     targetAttribute.value = fragmentAttribute.value;
                   }
