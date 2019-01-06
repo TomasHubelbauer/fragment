@@ -69,3 +69,4 @@ The project is in its early stages, please check with me in case of interest: [t
 - [ ] See if there is a good way to recognize binary attributes and allow setting them using booleans
 - [ ] Add a mechanism for rendering raw HTML
 - [ ] Find out if it is possible to freeze the target to avoid it changed while being worked on in `reconcile` (rendering e.g. `count` invalid)
+- [ ] Set up a TypeScript type checking pipeline based on QR channel example
