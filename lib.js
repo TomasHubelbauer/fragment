@@ -10,8 +10,8 @@ function reconcile(target, ...fragments) {
         debugger;
         throw new Error(`Went out of bounds: ${fragmentIndex}/${fragments.length}, ${targetIndex}/${target.childNodes.length}`);
       } else {
-        fragmentChild.dispatchEvent(new Event('unmount'));
         targetChild.remove();
+        delete targetChild;
       }
     } else if (fragmentChild === false) {
       // Move onto another fragment child but stay on the same target child
