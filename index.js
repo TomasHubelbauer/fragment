@@ -61,7 +61,7 @@ function render() {
             ` FPS over ${deltas.length} samples`
         ),
         div(
-            ...deltas.map(delta => div({ style: `background: orange; display: inline-flex; height: ${1000 / delta}px; margin: 1px; width: 2px;` })),
+            ...deltas.map(delta => div({ style: `background: orange; display: inline-flex; height: ${Math.min(1000 / delta, 60)}px; margin: 1px; width: 2px;` })),
         ),
         button({ onclick: onWorkButtonClick }, 'Do work to slow down the FPS to show on the graph'),
     );
@@ -70,12 +70,15 @@ function render() {
 window.addEventListener('load', _ => {
     render();
 
-    deltaCount = Math.floor(document.body.clientWidth / 4);
     let timestamp = performance.now();
     window.requestAnimationFrame(function step(t) {
         counter++;
+        const deltaCount = Math.floor(document.body.clientWidth / 4);
+        document.title = deltas.length + ' ' + deltaCount + ' ' + timestamp;
         if (deltas.push(t - timestamp) > deltaCount) {
-            deltas.shift();
+            for (let index = 0; index < deltas.length - deltaCount; index++) {
+                deltas.shift();
+            }
         }
 
         timestamp = t;

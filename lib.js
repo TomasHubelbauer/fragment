@@ -7,6 +7,7 @@ function reconcile(target, ...fragments) {
         const targetChild = target.childNodes[index];
         if (fragmentChild === undefined) {
             if (targetChild === undefined) {
+                // TODO: See if we can freeze the target so we don't freak out if it changes from underneath us (e.g.: shrink the window on the perf graph)
                 throw new Error(`Count ${count} went out of bounds: ${fragments.length}, ${target.childNodes.length}`);
             } else {
                 // TODO: .raiseEvent(document.createEvent('unmount'))
