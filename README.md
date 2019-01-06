@@ -72,3 +72,4 @@ The project is in its early stages, please check with me in case of interest: [t
 - [ ] Set up a TypeScript type checking pipeline based on QR channel example
 - [ ] Introduce keys and use them in reconciliation to preserve elements across sets not shift attribute updates
 - [ ] Document performance monitoring approaches used to determine the performance characteristics of Fragments (space & time)
+- [ ] Use `Element` methods instead of `setAttribute` to make binary attributes work
