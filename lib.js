@@ -10,7 +10,7 @@ function reconcile(target, ...fragments) {
         debugger;
         throw new Error(`Went out of bounds: ${fragmentIndex}/${fragments.length}, ${targetIndex}/${target.childNodes.length}`);
       } else {
-        // TODO: .raiseEvent(document.createEvent('unmount'))
+        fragmentChild.dispatchEvent(new Event('unmount'));
         targetChild.remove();
       }
     } else if (fragmentChild === false) {
@@ -19,7 +19,6 @@ function reconcile(target, ...fragments) {
       continue;
     } else {
       if (targetChild === undefined) {
-        // TODO: .raiseEvent(document.createEvent('mount'))
         target.appendChild(fragmentChild);
         fragmentChild.dispatchEvent(new Event('mount'));
       } else {
