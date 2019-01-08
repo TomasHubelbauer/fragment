@@ -65,6 +65,8 @@ The project is in its early stages, please check with me in case of interest: [t
 
 ### Roadmap
 
+- [ ] Fix TypeScript errors in the pipeline
+- [ ] Set up a release pipeline when they are available through YAML: https://stackoverflow.com/a/52323336/2715716
 - [ ] Add TypeScript typings for use with `types` and consider providing as an ES module and NPM library only
 - [ ] When we've exhausted target node count and still have fragment nodes, add all in bulk using `DocumentFragment` for perf
 - [ ] Provide a way to use the library as an ES module without having to introduce build process in the lib
