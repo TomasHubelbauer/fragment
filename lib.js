@@ -11,7 +11,6 @@ function reconcile(target, ...fragments) {
         throw new Error(`Went out of bounds: ${fragmentIndex}/${fragments.length}, ${targetIndex}/${target.childNodes.length}`);
       } else {
         targetChild.remove();
-        delete targetChild;
       }
     } else if (fragmentChild === false) {
       // Move onto another fragment child but stay on the same target child
@@ -126,7 +125,7 @@ function create(tag, attributesOrChildren) {
       if (typeof child === 'string') {
         element.appendChild(document.createTextNode(child));
       } else if (typeof child === 'number') {
-        element.appendChild(document.createTextNode(child));
+        element.appendChild(document.createTextNode(child.toString()));
       } else if (child instanceof Node) {
         element.appendChild(child);
       } else if (child === false || child === null || child === undefined) {
