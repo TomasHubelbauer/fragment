@@ -49,6 +49,12 @@ function render() {
 }
 ```
 
+## Testing
+
+[
+  ![](https://tomashubelbauer.visualstudio.com/fragment/_apis/build/status/fragment-CI?branchName=master)
+](https://tomashubelbauer.visualstudio.com/fragment/_build/latest?definitionId=13?branchName=master)
+
 ## Running
 
 See the [**online demo**](https://tomashubelbauer.github.io/fragment/)
