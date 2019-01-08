@@ -77,7 +77,8 @@ The project is in its early stages, please check with me in case of interest: [t
 - [ ] Find a way to preserve focus on an element if it moves up or down among its neighbors (better diff)
 - [ ] See if there is a good way to recognize binary attributes and allow setting them using booleans
 - [ ] Add a mechanism for rendering raw HTML
-- [ ] Find out if it is possible to freeze the target to avoid it changed while being worked on in `reconcile` (rendering e.g. `count` invalid)
+- [ ] Use a mutation observer to be able to tell the DOM has changed while reconciling but not by us and restart reconciliation
+  - https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
 - [ ] Set up a TypeScript type checking pipeline based on QR channel example
 - [ ] Introduce keys and use them in reconciliation to preserve elements across sets not shift attribute updates
 - [ ] Document performance monitoring approaches used to determine the performance characteristics of Fragments (space & time)
