@@ -5,12 +5,8 @@ steps:
     command: custom
     verbose: true
     customCommand: 'install typescript jest jest-junit'
-- task: Npm@1
+- powershell: npx jest --reporters="default" --reporters="jest-junit"
   displayName: 'Run Jest unit tests'
-  inputs:
-    command: custom
-    verbose: true
-    customCommand: test
 - task: PublishTestResults@2
   inputs:
     testResultsFiles: junit.xml
