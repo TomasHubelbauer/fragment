@@ -65,6 +65,7 @@ The project is in its early stages, please check with me in case of interest: [t
 
 ### Roadmap
 
+- [ ] Set up Jest unit tests
 - [ ] Fix TypeScript errors in the pipeline
 - [ ] Set up an NPM release pipeline when they are available through YAML: https://stackoverflow.com/a/52323336/2715716
   - [ ] Until then do it in a build pipeline
