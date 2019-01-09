@@ -1,9 +1,18 @@
 steps:
 - task: Npm@1
-  displayName: 'Install TypeScript'
+  displayName: 'Install TypeScript & Jest'
   inputs:
     command: custom
     verbose: true
-    customCommand: 'install typescript'
+    customCommand: 'install typescript jest jest-junit'
+- task: Npm@1
+  displayName: 'Run Jest unit tests'
+  inputs:
+    command: custom
+    verbose: true
+    customCommand: test
+- task: PublishTestResults@2
+  inputs:
+    testResultsFiles: junit.xml
 - powershell: npx tsc -p .
   displayName: 'Run type check'
