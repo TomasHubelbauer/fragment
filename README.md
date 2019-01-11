@@ -60,6 +60,8 @@ The project is in its early stages, please check with me in case of interest: [t
 
 ### Roadmap
 
+- [ ] Consider making this a straight-up TypeScript project because JSDoc is just too unwieldy for something like this
+  - It all depends on if I can get the GitHub releases & NPM pipeline to work as well as JSDelivr from npmjs.or for the lib file
 - [ ] Fix TypeScript errors in the pipeline
 - [ ] Set up an NPM release pipeline when they are available through YAML: https://stackoverflow.com/a/52323336/2715716
   - [ ] Until then do it in a build pipeline
