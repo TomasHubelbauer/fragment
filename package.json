@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "reporters": [
+      "default",
+      [ "jest-junit", {} ]
+    ]
+  },
+  "devDependencies": {
+    "jest": "23.6.0",
+    "jest-junit": "^5.2.0",
+    "typescript": "3.2.2"
+  }
+}
