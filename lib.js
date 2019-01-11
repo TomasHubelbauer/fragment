@@ -77,11 +77,11 @@ export default function reconcile(target, ...fragments) {
 // TODO: Find out if `attributesOrChildren` can be made `...attributesOrChildren` here, too,
 // but be careful about `const tag = (...attributesOrChildren) => create('tag', ...attributesOrChildren)` cloning the array (dunno if it would)
 // TODO: Split return type by whether we have provided just the tag name or both
-//**
+/**
  * @param {string} target
  * @returns {Function}
  */
- *//**
+/**
  * @param {string} target
  * @param {[object|Node|string|false, ...Node|string|false]} attributesOrChildren
  * @returns {HTMLElement}
