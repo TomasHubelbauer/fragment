@@ -4,12 +4,13 @@ steps:
   inputs:
     command: install
 - task: Npm@1
-  displayName: 'Install TypeScript & Jest'
+  displayName: 'Run tests'
   inputs:
     command: custom
     verbose: true
     customCommand: test
 - task: PublishTestResults@2
+  displayName: 'Publish tests'
   inputs:
     testResultsFiles: junit.xml
 - powershell: npx tsc -p .
