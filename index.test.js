@@ -1,10 +1,5 @@
 import { create } from './lib.js';
 
-test('tests that synchronous tests work', () => {
-  console.log(create('element1', [ { props: true }, 'child' ]).outerHTML);
-  expect(true).toBe(true);
-});
-
 test('recognizes first object argument as attributes and second string argument as children', () => {
   expect(create('element1', [ { props: true }, 'child' ]).outerHTML).toBe('<element1 props="true">child</element1>');
 });
