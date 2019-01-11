@@ -1,4 +1,4 @@
-function reconcile(target, ...fragments) {
+export default function reconcile(target, ...fragments) {
   let fragmentIndex = 0;
   let targetIndex = 0;
   while (fragmentIndex < fragments.length || targetIndex < target.childNodes.length) {
@@ -140,18 +140,18 @@ function create(tag, attributesOrChildren) {
 }
 
 // TODO: https://developer.mozilla.org/en-US/docs/Web/HTML/Element
-const div = create('div');
-const h1 = create('h1');
-const h2 = create('h2');
-const h3 = create('h3');
-const h4 = create('h4');
-const h5 = create('h5');
-const h6 = create('h6');
-const p = create('p');
-const button = create('button');
-const code = create('code');
-const b = create('b');
-const a = create('a');
-const details = create('details');
-const summary = create('summary');
-const span = create('span');
+export const div = create('div');
+export const h1 = create('h1');
+export const h2 = create('h2');
+export const h3 = create('h3');
+export const h4 = create('h4');
+export const h5 = create('h5');
+export const h6 = create('h6');
+export const p = create('p');
+export const button = create('button');
+export const code = create('code');
+export const b = create('b');
+export const a = create('a');
+export const details = create('details');
+export const summary = create('summary');
+export const span = create('span');
