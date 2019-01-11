@@ -12,21 +12,16 @@ which attempts to bridge the gap. Unfortunately, JSX is not supportable in plain
 
 ## Installing
 
-You can just link Fragment using a plain `script` tag.
+You can use Fragment as an ES module:
 
 ```js
-<script src="https://cdn.jsdelivr.net/gh/TomasHubelbauer/fragment/lib.js"></script>
-```
-
-We're working on making it available as an ES module as well:
-
-```js
-import reconcile, div from 'https://cdn.jsdelivr.net/gh/TomasHubelbauer/fragment/lib.js';
+import reconcile, { div } from 'https://cdn.jsdelivr.net/gh/TomasHubelbauer/fragment/lib.js';
 ```
 
 We're also working on providing an NPM library for the project.
 
 ```sh
+# Work in progress… Do not use the package name now
 npm install fragment
 ```
 
@@ -65,24 +60,21 @@ The project is in its early stages, please check with me in case of interest: [t
 
 ### Roadmap
 
-- [ ] Set up Jest unit tests
 - [ ] Fix TypeScript errors in the pipeline
 - [ ] Set up an NPM release pipeline when they are available through YAML: https://stackoverflow.com/a/52323336/2715716
   - [ ] Until then do it in a build pipeline
   - [ ] Create a GitHub release as well
-- [ ] Add TypeScript typings for use with `types` and consider providing as an ES module and NPM library only
 - [ ] When we've exhausted target node count and still have fragment nodes, add all in bulk using `DocumentFragment` for perf
-- [ ] Provide a way to use the library as an ES module without having to introduce build process in the lib
 - [ ] Obtain and publish an NPM package for Fragment
-- [ ] Split indices for target children and fragment children and implement skipping `false` by increasing only fragment index
-- [ ] Fix the demo chart not sliding, not updating styles of the `div` elements
+  - [ ] Await donation answer for `fragment`
+  - [ ] Await donation answer for `fragmentjs`
+- [ ] Add support for keys
+  - Will fix chart in showcase sliding attributes from one to another instead of just removing first then appending a new `div`
+  - Will fix `input` focus not moving with an element in a line if it changes within its set
 - [ ] Create a demo comparing Fragment with React and Vue
-- [ ] Find a way to preserve focus on an element if it moves up or down among its neighbors (better diff)
-- [ ] See if there is a good way to recognize binary attributes and allow setting them using booleans
+- [ ] See if there is a good way to recognize binary attributes and allow setting them using booleans (`setAttribute`?)
+  - [ ] Use `Element` methods instead of `setAttribute` to make binary attributes work - days later: which is it?
 - [ ] Add a mechanism for rendering raw HTML
 - [ ] Use a mutation observer to be able to tell the DOM has changed while reconciling but not by us and restart reconciliation
   - https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
-- [ ] Set up a TypeScript type checking pipeline based on QR channel example
-- [ ] Introduce keys and use them in reconciliation to preserve elements across sets not shift attribute updates
 - [ ] Document performance monitoring approaches used to determine the performance characteristics of Fragments (space & time)
-- [ ] Use `Element` methods instead of `setAttribute` to make binary attributes work
