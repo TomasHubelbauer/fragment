@@ -1,3 +1,5 @@
+import reconcile, { p } from '../../jib.js';
+
 let mounted = false;
 
 function onParagraphMount() {
