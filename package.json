@@ -1,4 +1,6 @@
 {
+  "main": "lib.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "jest"
   },
