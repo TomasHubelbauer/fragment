@@ -2,7 +2,6 @@ import reconcile, { h1, p, a, code, h2, button, b, div } from '../../lib.js';
 
 let mutated = false;
 let counter = 0;
-let deltaCount = 0;
 let deltas = [];
 let mounted = false;
 
@@ -19,7 +18,7 @@ function onParagraphMount() {
 function onWorkButtonClick() {
     const title = document.title;
     for (let index = 0; index < 1000; index++) {
-        document.title = index;
+        document.title = index.toString();
         document.title = title;
     }
 }
