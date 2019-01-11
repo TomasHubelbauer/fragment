@@ -79,7 +79,7 @@ export default function reconcile(target, ...fragments) {
 // TODO: Split return type by whether we have provided just the tag name or both
 /**
  * @param {string} target
- * @returns {(...*) => HTMLElement}
+ * @returns {([object|Node|string|false, ...Node|string|false]) => HTMLElement}
  */
 /**
  * @param {string} target
