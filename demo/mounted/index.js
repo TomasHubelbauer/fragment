@@ -1,4 +1,4 @@
-import reconcile, { p } from '../../jib.js';
+import reconcile, { p } from '../../lib.js';
 
 let mounted = false;
 
