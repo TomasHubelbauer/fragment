@@ -11,6 +11,7 @@
   "devDependencies": {
     "jest": "23.6.0",
     "jest-junit": "^5.2.0",
-    "typescript": "3.2.2"
+    "typescript": "3.2.2",
+    "babel-plugin-transform-es2015-modules-commonjs": "6.26.2"
   }
 }
