@@ -1,3 +1,5 @@
+import reconcile, { h1, p, a, code, h2, button, b, div } from '../../jib.js';
+
 let mutated = false;
 let counter = 0;
 let deltaCount = 0;
