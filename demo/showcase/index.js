@@ -1,4 +1,4 @@
-import reconcile, { h1, p, a, code, h2, button, b, div } from '../../jib.js';
+import reconcile, { h1, p, a, code, h2, button, b, div } from '../../lib.js';
 
 let mutated = false;
 let counter = 0;
