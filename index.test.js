@@ -1,6 +1,7 @@
 import { create } from './lib.js';
 
 test('tests that synchronous tests work', () => {
+  console.log(create('element1', [ { props: true }, 'child' ]));
   expect(true).toBe(true);
 });
 
