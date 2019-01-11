@@ -1,7 +1,7 @@
 import { create } from './lib.js';
 
 test('tests that synchronous tests work', () => {
-  except(true).toBe(true);
+  expect(true).toBe(true);
 });
 
 test('recognizes first object argument as attributes and second string argument as children', _ => {
