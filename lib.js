@@ -1,3 +1,7 @@
+/**
+ * @param {HTMLElement} target
+ * @param {[object|Node|string|false, ...Node|string|false]} fragments
+ */
 export default function reconcile(target, ...fragments) {
   let fragmentIndex = 0;
   let targetIndex = 0;
