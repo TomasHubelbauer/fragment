@@ -17,6 +17,6 @@ steps:
 - task: Npm@1
   inputs:
     command: publish
-    publishEndpoint: npmConnection
+    publishEndpoint: 'NPM connection'
 - powershell: npx tsc -p .
   displayName: 'Run type check'
