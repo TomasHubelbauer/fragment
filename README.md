@@ -15,14 +15,13 @@ which attempts to bridge the gap. Unfortunately, JSX is not supportable in plain
 You can use Fragment as an ES module:
 
 ```js
-import reconcile, { div } from 'https://cdn.jsdelivr.net/gh/TomasHubelbauer/fragment/lib.js';
+import reconcile, { div } from 'https://cdn.jsdelivr.net/npm/fragmentui/lib.js';
 ```
 
 We're also working on providing an NPM library for the project.
 
 ```sh
-# Work in progress… Do not use the package name now
-npm install fragment
+npm install fragmentui
 ```
 
 ## Using
