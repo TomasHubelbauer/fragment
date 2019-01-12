@@ -13,5 +13,10 @@ steps:
   displayName: 'Publish tests'
   inputs:
     testResultsFiles: junit.xml
+# TODO: Do is at the end when TypeScript is fixed and in a Release pipeline when they support YAML
+- task: Npm@1
+  inputs:
+    command: publish
+    publishEndpoint: npmConnection
 - powershell: npx tsc -p .
   displayName: 'Run type check'
