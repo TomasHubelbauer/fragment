@@ -148,7 +148,7 @@ export function setAttributes(element, attributesOrChildren) {
  * @param {string} tag
  * @returns {(...HTMLElement|Text|string|number|false) => HTMLElement}
  */
-function createElement(tag) {
+export function createElement(tag) {
   return (...attributesOrChildren) => setAttributes(document.createElement(tag), attributesOrChildren);
 }
 
