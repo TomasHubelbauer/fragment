@@ -69,7 +69,7 @@ The project is in its early stages, please check with me in case of interest: [t
 - [ ] Change the deployment part of the pipeline to Release once YAML is supported: https://stackoverflow.com/a/52323336/2715716
 - [ ] Fix remaining TypeScript errors in the pipeline
 - [ ] Await to see if either `fragment` or `fragmentjs` package name will be donated and migrate to it if either
-
+- [ ] Consider for now only calling `npm` if the tag has changed and tagging manually by creating releases
 
 #### Development
 
