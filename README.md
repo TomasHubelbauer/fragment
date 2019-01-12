@@ -87,3 +87,4 @@ The project is in its early stages, please check with me in case of interest: [t
 - [ ] Create a demo comparing Fragment with React and Vue
 - [ ] Add a mechanism for rendering raw HTML
 - [ ] Document performance monitoring approaches used to determine the performance characteristics of Fragments (space & time)
+- [ ] Add a license file
