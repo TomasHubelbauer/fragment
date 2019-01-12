@@ -61,15 +61,14 @@ The project is in its early stages, please check with me in case of interest: [t
 
 #### Infrastructure
 
-- [ ] Convert to TypeScript and publish only the compiler JavaScript files to NPM
-- [ ] See if we need to increase the version of if for now we can keep replacing 0.0.0 on NPM
-- [ ] Figure out a way to tag the repository in VSTS so that we have that tag as a prerequisite for making a GitHub release
+- [ ] Use [TypeScript type comments](https://github.com/TomasHubelbauer/ts-comment-types) instead of lame JSDoc
+- [ ] Set up an [`.npmignore`](https://docs.npmjs.com/misc/developers#keeping-files-out-of-your-package) for `publish` to use
+- [ ] Tag releases manually for now and plan to tag the `master` branch automatically from the pipeline using the GitHub API
 - [ ] Set up creating automatic GitHub releases: https://developer.github.com/v3/repos/releases/#create-a-release
-- [ ] See if we can derive new version number from existing tags in the pipeline
+- [ ] See if we can derive new version number from existing tags in the pipeline (can we get the tag in pipeline variables?)
 - [ ] Change the deployment part of the pipeline to Release once YAML is supported: https://stackoverflow.com/a/52323336/2715716
-- [ ] Fix remaining TypeScript errors in the pipeline
+- [ ] Fix the remaining TypeScript errors in the pipeline
 - [ ] Await to see if either `fragment` or `fragmentjs` package name will be donated and migrate to it if either
-- [ ] Consider for now only calling `npm` if the tag has changed and tagging manually by creating releases
 
 #### Development
 
