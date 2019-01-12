@@ -1,6 +1,6 @@
 /**
  * @param {HTMLElement} target
- * @param {(HTMLElement|Text|false)[]} fragments
+ * @param {(HTMLElement|Text|string|number|false)[]} fragments
  */
 export default function reconcile(target, ...fragments) {
   let fragmentIndex = 0;
@@ -76,28 +76,19 @@ export default function reconcile(target, ...fragments) {
 
 // TODO: Find out if `attributesOrChildren` can be made `...attributesOrChildren` here, too,
 // but be careful about `const tag = (...attributesOrChildren) => create('tag', ...attributesOrChildren)` cloning the array (dunno if it would)
-// TODO: Split return type by whether we have provided just the tag name or both
+
 /**
- * @param {string} target
- * @returns {([object|Node|string|false, ...Node|string|false]) => HTMLElement}
- */
-/**
- * @param {string} target
- * @param {[object|Node|string|false, ...Node|string|false]} attributesOrChildren
+ * @param {HTMLElement} target
+ * @param {[object|HTMLElement|Text|string|number|false, ...HTMLElement|Text|string|number|false]} attributesOrChildren
  * @returns {HTMLElement}
  */
-export function create(tag, attributesOrChildren) {
-  if (attributesOrChildren === undefined) {
-    return (...attributesOrChildren) => create(tag, attributesOrChildren);
-  }
-
-  const element = document.createElement(tag);
+export function setAttributes(element, attributesOrChildren) {
   const [first, ...others] = attributesOrChildren;
   let attributes;
   let children;
   if (first === undefined) {
     // Ignore, no  children
-    return element;
+    return;
   } else if (first instanceof Array) {
     if (others.length === 0) {
       children = first;
@@ -149,23 +140,31 @@ export function create(tag, attributesOrChildren) {
       }
     }
   }
-
+  
   return element;
 }
 
+/**
+ * @param {string} tag
+ * @returns {(...HTMLElement|Text|string|number|false) => HTMLElement}
+ */
+function createElement(tag) {
+  return (...attributesOrChildren) => setAttributes(document.createElement(tag), attributesOrChildren);
+}
+
 // TODO: https://developer.mozilla.org/en-US/docs/Web/HTML/Element
-export const div = create('div');
-export const h1 = create('h1');
-export const h2 = create('h2');
-export const h3 = create('h3');
-export const h4 = create('h4');
-export const h5 = create('h5');
-export const h6 = create('h6');
-export const p = create('p');
-export const button = create('button');
-export const code = create('code');
-export const b = create('b');
-export const a = create('a');
-export const details = create('details');
-export const summary = create('summary');
-export const span = create('span');
+export const div = createElement('div');
+export const h1 = createElement('h1');
+export const h2 = createElement('h2');
+export const h3 = createElement('h3');
+export const h4 = createElement('h4');
+export const h5 = createElement('h5');
+export const h6 = createElement('h6');
+export const p = createElement('p');
+export const button = createElement('button');
+export const code = createElement('code');
+export const b = createElement('b');
+export const a = createElement('a');
+export const details = createElement('details');
+export const summary = createElement('summary');
+export const span = createElement('span');
