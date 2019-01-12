@@ -59,23 +59,31 @@ The project is in its early stages, please check with me in case of interest: [t
 
 ### Roadmap
 
-- [ ] Consider making this a straight-up TypeScript project because JSDoc is just too unwieldy for something like this
-  - It all depends on if I can get the GitHub releases & NPM pipeline to work as well as JSDelivr from npmjs.or for the lib file
-- [ ] Fix TypeScript errors in the pipeline
-- [ ] Set up an NPM release pipeline when they are available through YAML: https://stackoverflow.com/a/52323336/2715716
-  - [ ] Until then do it in a build pipeline
-  - [ ] Create a GitHub release as well
+#### Infrastructure
+
+- [ ] Convert to TypeScript and publish only the compiler JavaScript files to NPM
+- [ ] See if we need to increase the version of if for now we can keep replacing 0.0.0 on NPM
+- [ ] Figure out a way to tag the repository in VSTS so that we have that tag as a prerequisite for making a GitHub release
+- [ ] Set up creating automatic GitHub releases: https://developer.github.com/v3/repos/releases/#create-a-release
+- [ ] See if we can derive new version number from existing tags in the pipeline
+- [ ] Change the deployment part of the pipeline to Release once YAML is supported: https://stackoverflow.com/a/52323336/2715716
+- [ ] Fix remaining TypeScript errors in the pipeline
+- [ ] Await to see if either `fragment` or `fragmentjs` package name will be donated and migrate to it if either
+
+
+#### Development
+
 - [ ] When we've exhausted target node count and still have fragment nodes, add all in bulk using `DocumentFragment` for perf
-- [ ] Obtain and publish an NPM package for Fragment
-  - [ ] Await donation answer for `fragment`
-  - [ ] Await donation answer for `fragmentjs`
 - [ ] Add support for keys
   - Will fix chart in showcase sliding attributes from one to another instead of just removing first then appending a new `div`
   - Will fix `input` focus not moving with an element in a line if it changes within its set
-- [ ] Create a demo comparing Fragment with React and Vue
 - [ ] See if there is a good way to recognize binary attributes and allow setting them using booleans (`setAttribute`?)
   - [ ] Use `Element` methods instead of `setAttribute` to make binary attributes work - days later: which is it?
-- [ ] Add a mechanism for rendering raw HTML
 - [ ] Use a mutation observer to be able to tell the DOM has changed while reconciling but not by us and restart reconciliation
   - https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
+
+#### Future
+
+- [ ] Create a demo comparing Fragment with React and Vue
+- [ ] Add a mechanism for rendering raw HTML
 - [ ] Document performance monitoring approaches used to determine the performance characteristics of Fragments (space & time)
