@@ -72,6 +72,7 @@ The project is in its early stages, please check with me in case of interest: [t
 
 #### Development
 
+- [ ] Change to "partial VDOM" - input fragments are plain objects and we convert to DOM in reconcile, but we read from real DOM
 - [ ] When we've exhausted target node count and still have fragment nodes, add all in bulk using `DocumentFragment` for perf
 - [ ] Add support for keys
   - Will fix chart in showcase sliding attributes from one to another instead of just removing first then appending a new `div`
