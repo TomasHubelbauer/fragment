@@ -9,7 +9,7 @@
   "jest": {
     "reporters": [
       "default",
-      [ "jest-junit", {} ]
+      "jest-junit"
     ]
   },
   "devDependencies": {

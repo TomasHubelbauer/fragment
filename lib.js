@@ -78,12 +78,11 @@ export default function reconcile(target, ...fragments) {
 // but be careful about `const tag = (...attributesOrChildren) => create('tag', ...attributesOrChildren)` cloning the array (dunno if it would)
 
 /**
- * @param {HTMLElement} target
- * @param {[object|HTMLElement|Text|string|number|false, ...HTMLElement|Text|string|number|false]} attributesOrChildren
- * @returns {HTMLElement}
+ * @param {[object|HTMLElement|Text|string|number|false, ...(HTMLElement|Text|string|number|false)[]]} attributesAndOrChildren
+ * @returns {{ attributes?: {[key:string]: string}, children?: any | any[] } | undefined}
  */
-export function setAttributes(element, attributesOrChildren) {
-  const [first, ...others] = attributesOrChildren;
+function getAttributesAndChildren(attributesAndOrChildren) {
+  const [first, ...others] = attributesAndOrChildren;
   let attributes;
   let children;
   if (first === undefined) {
@@ -96,11 +95,11 @@ export function setAttributes(element, attributesOrChildren) {
       throw new Error('Put array instead of object for props.');
     }
   } else if (typeof first === 'string') {
-    children = attributesOrChildren;
+    children = attributesAndOrChildren;
   } else if (typeof first === 'number') {
-    children = attributesOrChildren;
+    children = attributesAndOrChildren;
   } else if (first instanceof Node) {
-    children = attributesOrChildren;
+    children = attributesAndOrChildren;
   } else if (typeof first === 'object' && others instanceof Array) {
     if (others.length === 1 && others[0] instanceof Array) {
       attributes = first;
@@ -140,19 +139,24 @@ export function setAttributes(element, attributesOrChildren) {
       }
     }
   }
-  
-  return element;
 }
 
+// TODO: Figure out how to accept only attributes of the tag here: https://stackoverflow.com/q/54262105/2715716
 /**
- * @param {string} tag
- * @returns {(...HTMLElement|Text|string|number|false) => HTMLElement}
+ * @param {'div'} tag
+ * @returns {(attributesAndOrChildren: Partial<HTMLDivElement>) => any}
+ *//**
+ * @param {'a'} tag
+ * @returns {(attributesAndOrChildren: Partial<HTMLAnchorElement>) => any}
  */
 export function createElement(tag) {
-  return (...attributesOrChildren) => setAttributes(document.createElement(tag), attributesOrChildren);
+  return (...attributesAndOrChildren) => ({
+    tag,
+    ...getAttributesAndChildren(attributesAndOrChildren),
+  });
 }
 
-// TODO: https://developer.mozilla.org/en-US/docs/Web/HTML/Element
+// TODO: HTMLElementTagNameMap
 export const div = createElement('div');
 export const h1 = createElement('h1');
 export const h2 = createElement('h2');
