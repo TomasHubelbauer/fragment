@@ -84,6 +84,5 @@ const time = makeNonVoid('time');
 const track = makeVoid('track');
 const tt = makeNonVoid('tt');
 const ul = makeNonVoid('ul');
-const var = makeNonVoid('var');
 const video = makeNonVoid('video');
 const wbr = makeNonVoid('wbr');
