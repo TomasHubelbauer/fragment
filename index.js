@@ -60,6 +60,7 @@ const iframe = makeNonVoid('iframe');
 const img = makeVoid('img');
 const input = makeVoid('input');
 const kbd = makeNonVoid('kbd');
+const label = makeNonVoid('label');
 const li = makeNonVoid('li');
 const main = makeNonVoid('main');
 const map = makeNonVoid('map');
