@@ -53,38 +53,47 @@ function render() {
 
 See the [**online demo**](https://tomashubelbauer.github.io/fragment/)
 
-## Contributing
+## To-Do
 
-The project is in its early stages, please check with me in case of interest: [tomas@hubelbauer.net](tomas@hubelbauer.net).
+### Set up an `.npmignore` for `publish` to use
 
-### Roadmap
+https://docs.npmjs.com/misc/developers#keeping-files-out-of-your-package
 
-#### Infrastructure
+### Create releases using GitHub Actions replacing Azure Pipelines
 
-- [ ] Use [TypeScript type comments](https://github.com/TomasHubelbauer/ts-comment-types) instead of lame JSDoc
-- [ ] Set up an [`.npmignore`](https://docs.npmjs.com/misc/developers#keeping-files-out-of-your-package) for `publish` to use
-- [ ] Tag releases manually for now and plan to tag the `master` branch automatically from the pipeline using the GitHub API
-- [ ] Set up creating automatic GitHub releases: https://developer.github.com/v3/repos/releases/#create-a-release
-- [ ] See if we can derive new version number from existing tags in the pipeline (can we get the tag in pipeline variables?)
-- [ ] Change the deployment part of the pipeline to Release once YAML is supported: https://stackoverflow.com/a/52323336/2715716
-- [ ] Fix the remaining TypeScript errors in the pipeline
-- [ ] Await to see if either `fragment` or `fragmentjs` package name will be donated and migrate to it if either
+### Fix the remaining TypeScript errors in the pipeline
 
-#### Development
+### Await to see if either `fragment` or `fragmentjs` package name will be donated and migrate to it if either
 
-- [ ] Change to "partial VDOM" - input fragments are plain objects and we convert to DOM in reconcile, but we read from real DOM
-- [ ] When we've exhausted target node count and still have fragment nodes, add all in bulk using `DocumentFragment` for perf
-- [ ] Add support for keys
-  - Will fix chart in showcase sliding attributes from one to another instead of just removing first then appending a new `div`
-  - Will fix `input` focus not moving with an element in a line if it changes within its set
-- [ ] See if there is a good way to recognize binary attributes and allow setting them using booleans (`setAttribute`?)
-  - [ ] Use `Element` methods instead of `setAttribute` to make binary attributes work - days later: which is it?
-- [ ] Use a mutation observer to be able to tell the DOM has changed while reconciling but not by us and restart reconciliation
-  - https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
+### Change to "partial VDOM"
 
-#### Future
+Input fragments are plain objects and we convert to DOM in reconcile, but we read from real DOM
 
-- [ ] Create a demo comparing Fragment with React and Vue
-- [ ] Add a mechanism for rendering raw HTML
-- [ ] Document performance monitoring approaches used to determine the performance characteristics of Fragments (space & time)
-- [ ] Add a license file
+### When we've exhausted target node count and still have fragment nodes, add all in bulk
+
+Using `DocumentFragment` for perf
+
+### Add support for keys
+
+- Will fix chart in showcase sliding attributes from one to another instead of just removing first then appending a new `div`
+- Will fix `input` focus not moving with an element in a line if it changes within its set
+
+### See if there is a good way to recognize binary attributes and allow setting them using booleans (`setAttribute`?)
+
+Use `Element` methods instead of `setAttribute` to make binary attributes work - days later: which is it?
+
+### Use a mutation observer to be able to tell the DOM has changed while reconciling
+
+If not by us and restart reconciliation
+
+https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
+
+### Create a demo comparing Fragment with React and Vue
+
+### Add a mechanism for rendering raw HTML
+
+### Document performance monitoring approaches used to determine the performance characteristics of Fragments
+
+space & time
+
+### Add a license file
