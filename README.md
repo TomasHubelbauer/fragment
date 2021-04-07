@@ -97,3 +97,11 @@ https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
 space & time
 
 ### Add a license file
+
+### Realize in the Paper repository and delete the Fragment repository
+
+I have largely implemented what I consider to be the most ergonomic build-system
+free UI development solution in Paper. I need to check if Fragment still has
+something to offer than I lack in Paper (should it have reconciliation?) and
+carry over anything that I find meets that. Afterwards, the Fragment repository
+should be deleted in favor of Paper.
